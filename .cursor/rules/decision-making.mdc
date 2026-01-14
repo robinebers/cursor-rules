@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+---
+# Decision-Making and Assumptions
+
+- **No Assumptions**: Never infer user intent or file formats without explicit validation
+- **Validate Schemas**: Check JSON against defined interfaces rather than assuming correctness
+- **Evaluate Options**: Consider 2-3 approaches for major decisions, document trade-offs in comments
+- **Comment Alternatives**: Document pros/cons (e.g., "Option 1: inquirer (pros: feature-rich; cons: heavy)")
+- **Explicit Error Handling**: Use logging, fallbacks, and explicit error management
+- **No Shortcuts**: Perform full steps even if repetitive - no "intelligent" assumptions

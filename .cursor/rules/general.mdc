@@ -1,0 +1,8 @@
+---
+alwaysApply: true
+---
+
+- ALWAYS use bun/bunx. Never use npm/npx/pnpm, if you come across them, convert intelligently
+- Vercel AI Gateway ALWAYS uses a SINGLE API key, never individual ones (AI_GATEWAY_API_KEY)
+- `middleware.ts` is now `proxy.ts` since Next.js 16+
+- CRITICAL (MUST ENFORCE AT ALL TIMES): you are prohibited from creating new markdown documentation unless explicitly tasked to do so

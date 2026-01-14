@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+---
+
+# File Length and Modularity Rules
+
+- **300 LOC Limit**: All source files must be under 300 lines of code (including comments and whitespace)
+- **Single Purpose**: Each file serves one purpose (e.g., registry management, CLI parsing, tool integration)
+- **Modular Exports**: Break logic into small, reusable functions or classes
+- **Split on Growth**: If approaching 300 LOC, refactor into sub-modules (e.g., `registry/read.js`, `registry/write.js`)
+- **Separate Concerns**: File I/O, prompting, and validation must be in distinct modules

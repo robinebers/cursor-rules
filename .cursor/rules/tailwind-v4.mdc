@@ -1,0 +1,62 @@
+---
+description: Design tasks 
+alwaysApply: false
+---
+# Tailwind CSS v4 — Do/Don't
+
+## Do (v4 setup)
+- Import once in CSS: add `@import "tailwindcss";` to [app/globals.css](mdc:app/globals.css)
+- Use PostCSS plugin in [postcss.config.mjs](mdc:postcss.config.mjs): `plugins: ["@tailwindcss/postcss"]`
+- Configure in CSS, not JS: define tokens in `@theme { ... }` (no config file)
+- Use automatic class detection (no content array). If needed, add sources with `@source "./path"` in CSS.
+
+## Prefer (new APIs)
+- Gradients: `bg-linear-*`, plus `/oklch`; new `bg-conic-*`, `bg-radial-*`
+- Container queries in core: `@container`, `@max-*`, `@min-*`
+- Variants: `starting:*`, `not-*`, `in-*`, `descendant`, `open:` (popover)
+- 3D transforms: `transform-3d`, `rotate-x-*`, `rotate-y-*`, `translate-z-*`, etc.
+- Dynamic values: `grid-cols-N`, spacing via `--spacing` (e.g., `w-17`, `mt-8`)
+- Colors: OKLCH palette; opacity via `/` or `color-mix()`
+
+## Don’t (outdated in v4)
+- Don’t create `tailwind.config.*` or a `content` array
+- Don’t use `@tailwind base; @tailwind components; @tailwind utilities` — use `@import "tailwindcss"`
+- Don’t add `postcss-import` (v4 has built-in import support)
+- Don’t install `@tailwindcss/container-queries` (now core)
+- Don’t prefer `bg-gradient-*` — use `bg-linear-*`
+
+## Minimal snippet
+```css
+@import "tailwindcss";
+@theme {
+  --font-sans: ui-sans-serif, system-ui;
+  --color-brand-500: oklch(0.72 0.13 260);
+}
+@source "./components";
+```
+
+## Notes
+- We use bun in this repo; replace npm/npx with `bun`/`bunx`.
+- Keep using PostCSS in Next.js; Vite plugin is optional and not used here.
+
+# Tailwind v4 Dark Mode
+
+**CRITICAL**: Tailwind v4 requires explicit dark mode variant configuration.
+
+## Required Setup
+
+Add this line immediately after `@import "tailwindcss";` in `app/globals.css`:
+
+```css
+@custom-variant dark (&:is(.dark *));
+```
+
+Without this, `dark:` prefix classes will not work.
+
+## Usage
+
+Once configured, use standard dark mode syntax:
+
+```tsx
+className="bg-white dark:bg-gray-900 text-black dark:text-white"
+```
