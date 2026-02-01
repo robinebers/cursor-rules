@@ -35,6 +35,8 @@ A collection of rules, agents, commands, and skills for [Cursor](https://cursor.
 
 ### Rules
 
+**TODO:** I don't use Rules anymore, they have been replaced by a collection of [Skills](https://skills.sh/) and my [AGENTS.md](https://github.com/robinebers/agents.md).
+
 - **convex_rules** — Convex-specific patterns and best practices
 - **decision-making** — Structured decision-making guidelines
 - **file-length-modularity** — File length and modularity standards
