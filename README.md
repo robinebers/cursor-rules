@@ -23,3 +23,8 @@ Copy the `.cursor/rules/` directory into your project root. Cursor will automati
 ### Automatic
 
 As of January 2026, the Cursor Nightly version has a "From GitHub" functionality. So you can just link it and apply them to your project that way.
+
+Just put in this repo URL:
+`https://github.com/robinebers/cursor-rules.git`
+
+Good luck!
