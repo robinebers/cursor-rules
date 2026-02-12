@@ -10,32 +10,32 @@ Fetch, organize, and explain all review comments from a GitHub PR.
    ```bash
    # Get PR reviews with comments
    gh pr view <PR> --json reviews,comments,url,title,author --jq '.'
-
+   
    # Get review comments (inline code comments)
    gh api repos/{owner}/{repo}/pulls/{number}/comments --paginate
-
-   # Get issue-style comments (general discussion)
+   
+   # Get issue-style comments (general discussion)  
    gh api repos/{owner}/{repo}/issues/{number}/comments --paginate
    ```
 
 3. **Process & Organize**:
    - Group comments by **reviewer** (author login)
-   - **Dedupe**: Merge duplicate/similar comments (same file+line, or >80% text similarity)
+   - **Dedupe (!)** Merge duplicate/similar comments (same or very similar error)
    - For threads, collapse into single item with context
 
 4. **Categorize by Severity** (infer from tone/content):
    - 🔴 **Blocking**: "must", "required", "can't merge", security issues, bugs
-   - 🟡 **Should Fix**: "should", "please", style violations, better approaches
+   - 🟡 **Should Fix**: "should", "please", style violations, better approaches  
    - 🟢 **Suggestions**: "consider", "optional", "nit", "minor", questions
 
 5. **Explain Simply** for each comment:
    - What the reviewer wants (plain English, no jargon)
-   - Why it matters (1 sentence)
+   - Why it matters (1 sentence, no jargon)
    - Quick fix hint if obvious
 
 ## Output Format
 
-Number each comment sequentially (1, 2, 3...) across all categories so the user can easily reference them like "fix #3" or "skip #7".
+Number each comment sequentially (C1, C2, C3...) across all categories so the user can easily reference them like "fix #C3" or "skip #C7".
 
 ```
 ## PR #123: {title}
@@ -79,7 +79,7 @@ Original comment text summarized in simple paragraph
 
 ## Summary
 - {blocking} blocking issues to resolve
-- {should_fix} recommended changes
+- {should_fix} recommended changes  
 - {suggestions} optional improvements
 - Top concerns: [1-2 sentence summary of main themes]
 ```
