@@ -21,7 +21,7 @@ Generate `conductor.json` to share workspace scripts with teammates.
 Standard setup copies config dirs and env file from repo root to workspace:
 
 ```bash
-bun install; for d in .claude .codex .cursor; do [ -d "$CONDUCTOR_ROOT_PATH/$d" ] && mkdir -p "$CONDUCTOR_WORKSPACE_PATH/$d" && rsync -a "$CONDUCTOR_ROOT_PATH/$d/." "$CONDUCTOR_WORKSPACE_PATH/$d/"; done; [ -f "$CONDUCTOR_ROOT_PATH/{ENV_FILE}" ] && cp "$CONDUCTOR_ROOT_PATH/{ENV_FILE}" "$CONDUCTOR_WORKSPACE_PATH/{ENV_FILE}"
+bun install; for d in .agents .claude .codex .cursor; do [ -d "$CONDUCTOR_ROOT_PATH/$d" ] && mkdir -p "$CONDUCTOR_WORKSPACE_PATH/$d" && rsync -a "$CONDUCTOR_ROOT_PATH/$d/." "$CONDUCTOR_WORKSPACE_PATH/$d/"; done; [ -f "$CONDUCTOR_ROOT_PATH/{ENV_FILE}" ] && cp "$CONDUCTOR_ROOT_PATH/{ENV_FILE}" "$CONDUCTOR_WORKSPACE_PATH/{ENV_FILE}"
 ```
 
 Replace `{ENV_FILE}` based on project type.
@@ -33,7 +33,7 @@ Replace `{ENV_FILE}` based on project type.
 ```json
 {
     "scripts": {
-        "setup": "bun install; for d in .claude .codex .cursor; do [ -d \"$CONDUCTOR_ROOT_PATH/$d\" ] && mkdir -p \"$CONDUCTOR_WORKSPACE_PATH/$d\" && rsync -a \"$CONDUCTOR_ROOT_PATH/$d/.\" \"$CONDUCTOR_WORKSPACE_PATH/$d/\"; done; [ -f \"$CONDUCTOR_ROOT_PATH/.env\" ] && cp \"$CONDUCTOR_ROOT_PATH/.env\" \"$CONDUCTOR_WORKSPACE_PATH/.env\"",
+        "setup": "bun install; for d in .agents .claude .codex .cursor; do [ -d \"$CONDUCTOR_ROOT_PATH/$d\" ] && mkdir -p \"$CONDUCTOR_WORKSPACE_PATH/$d\" && rsync -a \"$CONDUCTOR_ROOT_PATH/$d/.\" \"$CONDUCTOR_WORKSPACE_PATH/$d/\"; done; [ -f \"$CONDUCTOR_ROOT_PATH/.env\" ] && cp \"$CONDUCTOR_ROOT_PATH/.env\" \"$CONDUCTOR_WORKSPACE_PATH/.env\"",
         "run": "bun run tauri dev"
     }
 }
@@ -44,7 +44,7 @@ Replace `{ENV_FILE}` based on project type.
 ```json
 {
     "scripts": {
-        "setup": "bun install; for d in .claude .codex .cursor; do [ -d \"$CONDUCTOR_ROOT_PATH/$d\" ] && mkdir -p \"$CONDUCTOR_WORKSPACE_PATH/$d\" && rsync -a \"$CONDUCTOR_ROOT_PATH/$d/.\" \"$CONDUCTOR_WORKSPACE_PATH/$d/\"; done; [ -f \"$CONDUCTOR_ROOT_PATH/.env.local\" ] && cp \"$CONDUCTOR_ROOT_PATH/.env.local\" \"$CONDUCTOR_WORKSPACE_PATH/.env.local\"",
+        "setup": "bun install; for d in .agents .claude .codex .cursor; do [ -d \"$CONDUCTOR_ROOT_PATH/$d\" ] && mkdir -p \"$CONDUCTOR_WORKSPACE_PATH/$d\" && rsync -a \"$CONDUCTOR_ROOT_PATH/$d/.\" \"$CONDUCTOR_WORKSPACE_PATH/$d/\"; done; [ -f \"$CONDUCTOR_ROOT_PATH/.env.local\" ] && cp \"$CONDUCTOR_ROOT_PATH/.env.local\" \"$CONDUCTOR_WORKSPACE_PATH/.env.local\"",
         "run": "bun run dev"
     }
 }

@@ -1,60 +1,50 @@
-# Cursor Rules
+# Skills
 
-A collection of rules, agents, and skills for [Cursor](https://cursor.com) that I use in my workflows.
+A small public repo of reusable agent skills, packaged for installation with [`npx skills`](https://skills.sh/).
 
 ## Structure
 
-```
-.agents/
-└── skills/
-    └── pr-manager/              # Create PRs and pull review comments
+```text
 .cursor/
-├── agents/
-│   └── code-auditor.md          # Codebase analysis & refactoring specialist
-├── rules/
-│   ├── convex_rules.mdc
-│   ├── decision-making.mdc
-│   ├── file-length-modularity.mdc
-│   ├── general.mdc
-│   ├── research-guidelines.mdc
-│   └── tailwind-v4.mdc
-└── skills/
-    └── conductor-json/          # Generate conductor.json for workspaces
+└── agents/
+    └── code-auditor.md
+skills/
+├── conductor-json/
+│   └── SKILL.md
+└── pr-manager/
+    ├── SKILL.md
+    └── agents/
+        └── openai.yaml
 ```
 
-## What's Included
+## Included Skills
 
-### Agents
+- `pr-manager` - Create pull requests with `gh`, wait for checks, and fetch or summarize review comments.
+- `conductor-json` - Generate `conductor.json` files for Conductor workspaces.
 
-- **code-auditor** — Expert code auditor that finds duplicate code, unused code, DRY violations, technical debt, and unused dependencies. Ideal after major feature work or before refactoring.
+## Install
 
-### PR Workflows
+Install everything from GitHub:
 
-The PR workflows now live in `.agents/skills/pr-manager`.
-The old `.cursor/commands/*` path is no longer used in this repo.
+```bash
+npx skills add robinebers/skills
+```
 
-### Rules
+Install a single skill:
 
-> **TODO:** I don't use Rules anymore, they have been replaced by a collection of [Skills](https://skills.sh/) and my [AGENTS.md](https://github.com/robinebers/agents.md).
+```bash
+npx skills add robinebers/skills --skill pr-manager
+npx skills add robinebers/skills --skill conductor-json
+```
 
-- **convex_rules** — Convex-specific patterns and best practices
-- **decision-making** — Structured decision-making guidelines
-- **file-length-modularity** — File length and modularity standards
-- **general** — General coding conventions
-- **research-guidelines** — Research and exploration guidelines
-- **tailwind-v4** — Tailwind CSS v4 patterns
+List what the package exposes:
 
-### Skills
+```bash
+npx skills add robinebers/skills --list
+```
 
-- **pr-manager** — Creates PRs from the current branch, waits for checks, and fetches and organizes PR review comments.
-- **conductor-json** — Generates `conductor.json` files for Conductor workspaces, with templates for Tauri, Next.js, and React projects.
+The `skills` CLI will install each skill into the right location for your agent, including Cursor, Claude Code, Codex, and others.
 
-## Usage
+## Other Files
 
-### Manual Install
-
-Copy the `.cursor/` and `.agents/` directories into your project root.
-Cursor will automatically pick up rules and agents from `.cursor/`, and the `pr-manager` skill from `.agents/skills/`.
-If you only copy `.cursor/`, you will not get the PR workflow.
-
-Good luck!
+- `.cursor/agents/code-auditor.md` is a Cursor agent prompt I still keep in this repo, but it is not part of the installable `npx skills` package.
